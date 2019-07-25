@@ -8,4 +8,5 @@ activate () {
 
 activate
 sudo pip install -r requirements.txt
+cp ~/*.json ./client_secret.json
 python main.py
