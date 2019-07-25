@@ -37,4 +37,10 @@ class User():
             else:
                 self.data[key] = kwargs[key]
     def get_value(self):
-        return [ i for i in self.data.values() ]
+        attr = [ 'id', 'id_chat','username', 'display_name', 'avatar', 
+        'cover', 'gender', 'birthday', 'location', 'post_count', 
+        'friend_count', 'status', 'create_time', 'relation': '',
+        'status_verify', 'data_source', 'work', 'relationship', 
+        'province', 'website', 'education', 'update_time']
+        
+        return [ self.data[key] for key in attr ]
