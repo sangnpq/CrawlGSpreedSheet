@@ -8,7 +8,7 @@ from user import User
 
 def download_site(url):
     with requests.get(url) as response:
-        if response:
+        if response and response.text and response.text != '':
             item = json.loads(response.text)[0]
             user = User(**item)
             writeSpreedSheet(user, user.data['id'])
