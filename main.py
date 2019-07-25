@@ -31,7 +31,7 @@ if __name__ == "__main__":
     limit = 200000
     data = []
     sites = [ url %(i + 1) for i in range(0, limit) ]
-    for i in range(0, limit):
+    for i in range(1, limit):
         if i%1000 == 0:
             writeSpreedSheet(data, sheet.sheet1.row_count + 2)
             data = []
