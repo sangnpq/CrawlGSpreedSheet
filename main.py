@@ -30,10 +30,12 @@ if __name__ == "__main__":
     url = "https://api.gapo.vn/main/v1.0/user?id=%d"
     limit = 200000
     data = []
+    curr_row = 2
     sites = [ url %(i + 1) for i in range(0, limit) ]
     for i in range(1, limit):
         if i%1000 == 0:
-            print "---%d---" % sheet.sheet1.row_count
-            writeSpreedSheet(data, sheet.sheet1.row_count + 2)
+            print "---%d---" % curr_row
+            writeSpreedSheet(data, curr_row)
+            curr_row += len(data)
             data = []
         download_site(url % i, data)
