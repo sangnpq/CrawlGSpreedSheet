@@ -10,3 +10,4 @@ activate () {
 activate
 . ~/init.sh
 python main.py
+deactivate
