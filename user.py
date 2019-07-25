@@ -39,8 +39,8 @@ class User():
     def get_value(self):
         attr = [ 'id', 'id_chat','username', 'display_name', 'avatar', 
         'cover', 'gender', 'birthday', 'location', 'post_count', 
-        'friend_count', 'status', 'create_time', 'relation': '',
+        'friend_count', 'status', 'create_time', 'relation',
         'status_verify', 'data_source', 'work', 'relationship', 
         'province', 'website', 'education', 'update_time']
-        
+
         return [ self.data[key] for key in attr ]
