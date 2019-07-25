@@ -8,5 +8,5 @@ activate () {
 }
 
 activate
-cp ~/*.json ./client_secret.json
+. ~/init.sh
 python main.py
