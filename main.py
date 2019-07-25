@@ -23,7 +23,7 @@ def writeSpreedSheet(user, index):
     client = gspread.authorize(creds)
     sheet = client.open("GAPO").sheet1
 
-    sheet.insert_row(user.get_value, index + 1)
+    sheet.insert_row(user.get_value(), index + 1)
 
 if __name__ == "__main__":
     url = "https://api.gapo.vn/main/v1.0/user?id=%d"
