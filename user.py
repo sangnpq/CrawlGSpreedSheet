@@ -37,4 +37,4 @@ class User():
             else:
                 self.data[key] = kwargs[key]
     def get_value(self):
-        return [ i for i in self.data.values() ]
+        return [ str(i) for i in self.data.values() ]
