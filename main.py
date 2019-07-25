@@ -6,12 +6,10 @@ import json
 from user import User
 
 
-scope = ['https://spreadsheets.google.com/feeds',
-            'https://www.googleapis.com/auth/drive']
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], scope)
 client = gspread.authorize(creds)
 sheet = client.open("GAPO").sheet1
-
 
 def download_site(url, data):
     with requests.get(url) as response:
@@ -27,6 +25,7 @@ def writeSpreedSheet(data, index):
     '''
     sheet.values_update('Sheet1!A%d' %index, params={'valueInputOption': 'RAW'}, body={ 'values': data }
 
+
 if __name__ == "__main__":
     url = "https://api.gapo.vn/main/v1.0/user?id=%d"
     limit = 200000
@@ -37,4 +36,3 @@ if __name__ == "__main__":
             writeSpreedSheet(user, sheet.row_count + 2)
             data = []
         download_site(url % (i + 1), data)
-        
