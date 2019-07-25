@@ -9,7 +9,7 @@ from user import User
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], scope)
 client = gspread.authorize(creds)
-sheet = client.open("GAPO").sheet1
+sheet = client.open("GAPO")
 
 def download_site(url, data):
     with requests.get(url) as response:
@@ -23,7 +23,7 @@ def writeSpreedSheet(data, index):
     '''
         Use creds to create a client to interact with the Google Drive API
     '''
-    sheet.values_update('Sheet1!A%d' %index, params={'valueInputOption': 'RAW'}, body={ 'values': data })
+    sheet.values_update('Sheet1!A%d'  % index, params={'valueInputOption': 'RAW'}, body={ 'values': data })
 
 
 if __name__ == "__main__":
