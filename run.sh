@@ -3,10 +3,10 @@ PWD=`pwd`
 /usr/bin/virtualenv --python=python venv
 echo $PWD
 activate () {
-    source $PWD/venv/bin/activate
+    . $PWD/venv/bin/activate;
+    pip install -r requirements.txt
 }
 
 activate
-sudo pip install -r requirements.txt
 cp ~/*.json ./client_secret.json
 python main.py
