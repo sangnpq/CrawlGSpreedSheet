@@ -3,7 +3,7 @@ PWD=`pwd`
 /usr/bin/virtualenv --python=python venv
 echo $PWD
 activate () {
-    . $PWD/venv/bin/activate
+    source $PWD/venv/bin/activate
 }
 
 activate
