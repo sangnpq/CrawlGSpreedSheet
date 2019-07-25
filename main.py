@@ -6,30 +6,35 @@ import json
 from user import User
 
 
-def download_site(url):
+scope = ['https://spreadsheets.google.com/feeds',
+            'https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], scope)
+client = gspread.authorize(creds)
+sheet = client.open("GAPO").sheet1
+
+
+def download_site(url, data):
     with requests.get(url) as response:
         if response and response.text and response.text != '':
             item = json.loads(response.text)
             if len(item) > 0:
                 user = User(**item[0])
-                writeSpreedSheet(user, user.data['id'])
+                data.append(user)
 
-def writeSpreedSheet(user, index):
+def writeSpreedSheet(data, index):
     '''
         Use creds to create a client to interact with the Google Drive API
     '''
-
-    scope = ['https://spreadsheets.google.com/feeds',
-            'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("GAPO").sheet1
-
-    sheet.insert_row(user.get_value(), index + 1)
+    sheet.values_update('Sheet1!A%d' %index, params={'valueInputOption': 'RAW'}, body={ 'values': data }
 
 if __name__ == "__main__":
     url = "https://api.gapo.vn/main/v1.0/user?id=%d"
     limit = 200000
+    data = []
     sites = [ url %(i + 1) for i in range(0, limit) ]
-    for site in sites:
-        download_site(site)
+    for i in range(0, limit):
+        if i%1000 == 0:
+            writeSpreedSheet(user, sheet.row_count + 2)
+            data = []
+        download_site(url % (i + 1), data)
+        
