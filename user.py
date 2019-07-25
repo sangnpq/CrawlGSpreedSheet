@@ -23,7 +23,7 @@ class User():
         'province': '',
         'website': '',
         'education': '',
-        'update_time': datetime.datetime.now()
+        'update_time': str(datetime.datetime.now())
         
     }
     def __init__(self, **kwargs):
@@ -37,4 +37,4 @@ class User():
             else:
                 self.data[key] = kwargs[key]
     def get_value(self):
-        return [ str(i) for i in self.data.values() ]
+        return [ i for i in self.data.values() ]
