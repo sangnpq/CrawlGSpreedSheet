@@ -35,4 +35,4 @@ if __name__ == "__main__":
         if i%1000 == 0:
             writeSpreedSheet(data, sheet.sheet1.row_count + 2)
             data = []
-        download_site(url % (i + 1), data)
+        download_site(url % i, data)
