@@ -33,6 +33,6 @@ if __name__ == "__main__":
     sites = [ url %(i + 1) for i in range(0, limit) ]
     for i in range(0, limit):
         if i%1000 == 0:
-            writeSpreedSheet(user, sheet.row_count + 2)
+            writeSpreedSheet(data, sheet.row_count + 2)
             data = []
         download_site(url % (i + 1), data)
