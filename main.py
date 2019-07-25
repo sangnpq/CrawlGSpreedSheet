@@ -23,7 +23,7 @@ def writeSpreedSheet(data, index):
     '''
         Use creds to create a client to interact with the Google Drive API
     '''
-    sheet.values_update('Sheet1!A%d' %index, params={'valueInputOption': 'RAW'}, body={ 'values': data }
+    sheet.values_update('Sheet1!A%d' %index, params={'valueInputOption': 'RAW'}, body={ 'values': data })
 
 
 if __name__ == "__main__":
