@@ -1,6 +1,6 @@
 #!/bin/bash -x
 PWD=`pwd`
-/usr/local/bin/virtualenv --python=python venv
+/usr/bin/virtualenv --python=python venv
 echo $PWD
 activate () {
     . $PWD/venv/bin/activate
