@@ -37,5 +37,6 @@ if __name__ == "__main__":
             print "---%d---" % curr_row
             writeSpreedSheet(data, curr_row)
             curr_row += len(data)
+            sheet.sheet1.add_rows(1000)
             data = []
         download_site(url % i, data)
